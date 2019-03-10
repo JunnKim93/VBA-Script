@@ -1,0 +1,41 @@
+'This is the vba code used to produce the final homework report
+
+Sub StockVolume()
+
+Dim Ticker_Symbol As String
+Dim Total_Stock_Volume As Double
+Dim ws As Integer
+Dim Table_Row As Integer
+
+Do While ws <= Worksheets.Count
+
+ws = 1
+Total_Stock_Volume = 0
+FinalRow = Cells(Rows.Count, 1).End(xlUp).Row
+Table_Row = 2
+
+Range("I1").Value = "Ticker Symbol"
+Range("J1").Value = "Total Stock Volume"
+
+    For i = 2 To FinalRow
+        
+        If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+            Ticker_Symbol = Cells(i, 1).Value
+            Total_Stock_Volume = Total_Stock_Volume + Cells(i, 7).Value
+            
+            Range("I" & Table_Row).Value = Ticker
+            Range("J" & Table_Row).Value = Total_Stock_Volume
+            
+            Table_Row = Table_Row + 1
+            Total_Stock_Volume = 0
+        Else
+            Total_Stock_Volume = Total_Stock_Volume + Cells(i, 7).Value
+        
+        End If
+    
+    Next i
+
+ws = ws + 1
+
+Loop
+End Sub
